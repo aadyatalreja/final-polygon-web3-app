@@ -1,0 +1,61 @@
+<div class="container">
+  <header>
+    <h1>Send Tokens via Polygon</h1>
+  </header>
+
+  <form (ngSubmit)="onSubmit()" #transactionForm="ngForm">
+    <div class="mat-form-field">
+      <input
+        type="text"
+        id="recipientAddress"
+        [(ngModel)]="recipientAddress"
+        name="recipientAddress"
+        placeholder=" "
+        required
+      />
+      <label class="mat-label" for="recipientAddress">Recipient Wallet Address</label>
+    </div>
+
+    <div class="mat-form-field">
+      <input
+        type="number"
+        id="amount"
+        [(ngModel)]="amount"
+        name="amount"
+        placeholder=" "
+        required
+      />
+      <label class="mat-label" for="amount">Token Amount</label>
+    </div>
+
+    <div class="mat-form-field">
+      <input
+        type="text"
+        id="contractAddress"
+        [(ngModel)]="contractAddress"
+        name="contractAddress"
+        placeholder=" "
+      />
+      <label class="mat-label" for="contractAddress">Token Contract Address (Optional)</label>
+    </div>
+
+    <button type="submit">Send Tokens</button>
+  </form>
+
+  <div *ngIf="balance || txHash || errorMessage" class="result">
+    <div *ngIf="balance">
+      <h3>Your Balance:</h3>
+      <p>{{ balance }}</p>
+    </div>
+
+    <div *ngIf="txHash">
+      <h3>Transaction Hash:</h3>
+      <p>{{ txHash }}</p>
+    </div>
+
+    <div *ngIf="errorMessage">
+      <h3>Error:</h3>
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+</div>
